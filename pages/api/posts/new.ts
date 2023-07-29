@@ -7,7 +7,7 @@ export default async (req: NextApiRequest, res: NextApiResponse) => {
     const db = await connectToDatabase();
     const collection = db.collection("posts");
     const newPost: Post = req.body;
-    const result = await collection.insertOne(newPost);
+    await collection.insertOne(newPost);
     res.status(200).json({ post: newPost });
   } else {
     res.status(405).json({ message: "We only support POST" });
